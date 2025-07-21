@@ -20,7 +20,6 @@ return {
 			local servers = {
 				"pyright",
 				"clangd",
-				"arduino_language_server",
 				"ts_ls",
 				"html",
 				"cssls",
@@ -44,9 +43,7 @@ return {
 				"terraform_fmt",
 			}
 
-			mason.setup({
-				ui = { border = "rounded" },
-			})
+			mason.setup({ ui = { border = "rounded" } })
 
 			local on_attach = function(client, bufnr)
 				local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -65,7 +62,6 @@ return {
 							capabilities = capabilities,
 						}
 
-						-- Patch clangd for ESP-IDF compile_commands support
 						if server_name == "clangd" then
 							opts.cmd = {
 								"clangd",
@@ -93,22 +89,6 @@ return {
 										unusedwrite = true,
 									},
 									staticcheck = true,
-								},
-							},
-						})
-					end,
-
-					["arduino_language_server"] = function()
-						lspconfig.arduino_language_server.setup({
-							on_attach = on_attach,
-							capabilities = capabilities,
-							cmd = { "arduino-language-server" },
-							filetypes = { "arduino" },
-							settings = {
-								arduino = {
-									cli = { path = "arduino-cli" },
-									board_manager = { enabled = true },
-									sketch = { path = "./" },
 								},
 							},
 						})
