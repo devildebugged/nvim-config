@@ -6,6 +6,12 @@ vim.opt.number = true -- Show absolute line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.scrolloff = 6 -- Keep at least 6 lines above/below the cursor
 
+-- I'm a tabs guy
+vim.opt.expandtab = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
 -- Enable mouse
 vim.o.mouse = "a"
 
